@@ -1,5 +1,5 @@
 # api-weather
-API REST construida en node.js
+API REST construida en node.js.
 Notas:
 - Express para el servidor.
 - Libreria axios para realizar la peticion de informacion a servicios externos mediante http protocol.
