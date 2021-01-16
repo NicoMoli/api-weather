@@ -20,7 +20,7 @@ app.get('/v1', function (req, res) {
 
 app.get('/v1/location', async function (req, res) {
 
-    getIPAndWeather()
+    getLocationByIp()
     .then(resp => {
         res.status(200).json({ DataObject: resp });
     })
@@ -81,20 +81,29 @@ app.get('/v1/forecast/:lat?/:lon?',async function (req, res) {
     }
 });
 
+async function getLocationByIp() {
+
+    public_ip = await publicIp.v4();
+
+    const response = await axios.get('http://ip-api.com/json/'+ public_ip)
+ 
+    return response.data;         
+}
+
 async function getIPAndWeather() {
 
     public_ip = await publicIp.v4();
 
     const response = await axios.get('http://ip-api.com/json/'+ public_ip)
 
-    const responseWeather = await axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + response.data.city + '&appid=' + apiKey +'&units=metric')
+    const responseWeather = await axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + response.data.city + '&appid=' + apiKey +'&units=metric&lang=sp')
  
     return responseWeather.data;         
 }
 
 async function getWeatherByCity(cityName) {
  
-    const response = await axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey +'&units=metric')
+    const response = await axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey +'&units=metric&lang=sp')
 
     return response.data;
 }
@@ -113,7 +122,7 @@ async function getIPAndWeatherForecast() {
 
 async function getWeatherForecast(cityName) {
     
-    const response = await axios.get('http://api.openweathermap.org/data/2.5/forecast?q=' + cityName +'&cnt=6&appid=' + apiKey +'&units=metric');
+    const response = await axios.get('http://api.openweathermap.org/data/2.5/forecast?q=' + cityName +'&cnt=6&appid=' + apiKey +'&units=metric&lang=sp');
    
     return response.data;
 }
@@ -122,7 +131,7 @@ async function getWeatherForecastByLatAndLong(latCity, lonCity) {
     
     const response = await axios.get('https://api.openweathermap.org/data/2.5/onecall?lat=' + latCity +'&lon=' + lonCity +'&appid=' + apiKey + 
     '&exclude=minutely,hourly,alerts&units=metric&lang=sp');
-   
+
     return response.data;
 }
 
