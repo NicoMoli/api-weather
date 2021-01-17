@@ -1,6 +1,6 @@
 # api-weather
 API REST construida en node.js.
-Arquitectura:
+- Arquitectura:
 Carpeta src:
       - app.js -> archivo principal, mediante el cual se levanta la api. En él se configura la ruta base (/v1) y ademas se ejecutan los test de los endpoints.
       
