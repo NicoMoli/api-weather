@@ -9,3 +9,9 @@ Api de test en Node.js
 * src/routes/ -> contiene el archivo index.js que arma la ruta base y el archivo weather.js que arma las url de los endpoints y los mapea hacias las acciones de los        controladores.
 * src/config/ -> contiene las url y api keys necesarias para utilizar IP-API y OpenWeatherApi.
 * src/services/ -> contiene la logica de negocio necesaria y las llamadas a los servicios externos.
+
+## Librerías utilizadas:
+
+* Express.js herramienta utilizada para crear aplicaciones web y API. https://expressjs.com/es/
+* Supertest, utilizada para correr los diferentes test. https://www.npmjs.com/package/supertest
+* Axios, utilizada para realizar las peticiones http a servicios externos. https://www.npmjs.com/package/axios
